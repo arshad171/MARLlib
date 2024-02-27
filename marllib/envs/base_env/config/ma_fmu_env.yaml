@@ -1,0 +1,12 @@
+env: ma_fmu_env
+
+env_args:
+  map_name: "default"
+  system_version: "v11ma"
+  # max_cycles: 25
+  episode_limit: 1000
+
+mask_flag: False
+global_state_flag: False
+opp_action_in_cc: False
+agent_level_batch_update: False
