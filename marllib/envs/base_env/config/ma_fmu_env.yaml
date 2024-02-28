@@ -4,7 +4,7 @@ env_args:
   map_name: "default"
   system_version: "v11ma"
   # max_cycles: 25
-  episode_limit: 1000
+  episode_limit: 10
 
 mask_flag: False
 global_state_flag: False
