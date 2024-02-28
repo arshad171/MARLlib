@@ -150,7 +150,7 @@ def run_vd(exp_info, env, model, stop=None):
                     lambda agent_id, episode, **kwargs: shared_policy_name)
             else:
                 policies = {
-                    "policy_{}".format(i): (None, env_info["space_obs"], env_info["space_act"], {}) for i in
+                    "policy_{}".format(i): (None, env_info["space_obs"], env_info["space_act_test"][i], {}) for i in
                     groups
                 }
                 policy_ids = list(policies.keys())
@@ -162,7 +162,7 @@ def run_vd(exp_info, env, model, stop=None):
                 raise ValueError("in {}, agent number too large, we disable no sharing function".format(map_name))
 
             policies = {
-                "policy_{}".format(i): (None, env_info["space_obs"], env_info["space_act"], {}) for i in
+                "policy_{}".format(i): (None, env_info["space_obs"], env_info["space_act_test"].values()[i], {}) for i in
                 range(env_info["num_agents"])
             }
             policy_ids = list(policies.keys())
