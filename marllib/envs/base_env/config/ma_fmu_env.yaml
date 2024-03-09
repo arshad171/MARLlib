@@ -2,9 +2,9 @@ env: ma_fmu_env
 
 env_args:
   map_name: "default"
-  system_version: "v11ma"
+  system_version: "v12ma"
   # max_cycles: 25
-  episode_limit: 10
+  episode_limit: 100
   train: True
   test_simulation: 50
   out_folder: "."
