@@ -107,12 +107,14 @@ def run_il(exp_info, env, model, stop=None):
             raise ValueError("in {}, agent number too large, we disable no sharing function".format(map_name))
 
         policies = {
-            "policy_{}".format(i): (None, env_info["space_obs"], env_info["space_act_test"].values()[i], {}) for i in
+            "policy_{}".format(i): (None, env_info["space_obs"], list(env_info["space_act_test"].values())[i], {}) for i in
             range(env_info["num_agents"])
         }
         policy_ids = list(policies.keys())
+        # policy_mapping_fn = tune.function(
+        #     lambda agent_id: policy_ids[agent_name_ls.index(agent_id)])
         policy_mapping_fn = tune.function(
-            lambda agent_id: policy_ids[agent_name_ls.index(agent_id)])
+            lambda agent_id: policy_ids[list(agent_name_ls.keys()).index(agent_id)])
 
     else:
         raise ValueError("wrong share_policy {}".format(exp_info["share_policy"]))
