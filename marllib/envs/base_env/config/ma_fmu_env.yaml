@@ -4,12 +4,13 @@ env_args:
   map_name: "default"
   system_version: "v12ma"
   # max_cycles: 25
-  episode_limit: 100
+  episode_limit: 10
   train: True
-  test_simulation: 50
+  test_simulation: 100
   out_folder: "."
 
 mask_flag: False
 global_state_flag: False
 opp_action_in_cc: False
-agent_level_batch_update: False
+agent_level_batch_update: True
+# fixed_batch_timesteps: 64
