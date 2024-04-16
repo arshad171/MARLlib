@@ -9,7 +9,7 @@ env_args:
   test_simulation: 100
   out_folder: "."
 
-mask_flag: False
+mask_flag: True
 global_state_flag: False
 opp_action_in_cc: False
 agent_level_batch_update: True
