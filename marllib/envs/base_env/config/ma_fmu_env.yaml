@@ -2,14 +2,14 @@ env: ma_fmu_env
 
 env_args:
   map_name: "default"
-  system_version: "v12ma"
+  system_version: "v2ma"
   # max_cycles: 25
-  episode_limit: 10
-  train: True
+  episode_limit: 100
+  train: False
   test_simulation: 100
   out_folder: "."
 
-mask_flag: True
+mask_flag: False
 global_state_flag: False
 opp_action_in_cc: False
 agent_level_batch_update: True

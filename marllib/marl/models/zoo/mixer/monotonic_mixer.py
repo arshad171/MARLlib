@@ -76,3 +76,51 @@ class QMixer(nn.Module):
         # Reshape and return
         q_tot = y.view(bs, -1, 1)
         return q_tot
+
+# class QMixer(nn.Module):
+#     def __init__(self, custom_config, state_dim):
+#         super(QMixer, self).__init__()
+
+#         self.n_agents = custom_config["num_agents"]
+#         self.raw_state_dim = state_dim
+#         self.embed_dim = custom_config["model_arch_args"]["mixer_embedding"]
+#         self.state_dim = state_dim[0]
+
+#         # self.q_net = nn.Sequential(
+#         #     nn.Linear(self.state_dim, 10),
+#         #     nn.ReLU(),
+#         #     nn.Linear(10, self.n_agents),
+#         #     # nn.Sigmoid(),
+#         #     nn.Softmax(dim=1),
+#         # )
+
+#         self.q_net = nn.Sequential(
+#             nn.Linear(self.state_dim + self.n_agents, 128),
+#             nn.ReLU(),
+#             nn.Linear(128, 64),
+#             nn.ReLU(),
+#             nn.Linear(64, self.n_agents),
+#             # nn.Sigmoid(),
+#             nn.Softmax(dim=1),
+#         )
+
+#     def forward(self, agent_qs, states):
+#         # agent_qs: batch x 1 x n_agents
+#         # states: batch x n_agents x state_dim
+#         batch_size = agent_qs.size(0)
+#         n_agents = agent_qs.size(1)
+
+#         states = states[:, 0, :]
+#         agent_qs = agent_qs.view(-1, self.n_agents)
+
+#         # feats = states
+#         feats = torch.cat([states, agent_qs], dim=1)
+
+#         q_tot = self.q_net(feats)
+
+#         # q_tot = torch.sum(q_tot * agent_qs[:, 0, :], dim=1)
+#         q_tot = torch.sum(q_tot * agent_qs, dim=1)
+
+#         q_tot = q_tot.view(batch_size, -1, 1)
+
+#         return q_tot

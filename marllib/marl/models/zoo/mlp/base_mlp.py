@@ -103,7 +103,9 @@ class BaseMLP(TorchModelV2, nn.Module):
         output = self.p_branch(self._features)
 
         if self.custom_config["mask_flag"]:
-            output = output + inf_mask
+            inf_mask_slice = inf_mask[:, :output.shape[1]]
+            output = output + inf_mask_slice
+            # output = output + inf_mask
 
         return output, state
 
